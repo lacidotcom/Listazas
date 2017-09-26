@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.example.laci.listazas.MainActivity">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/relativeLayout1"></RelativeLayout>
+
+    <EditText
+        android:textAlignment="center"
+        android:inputType=""
+        android:id="@+id/editText"
+        android:layout_height="50dp"
+        android:layout_width="200dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="141dp"
+        android:layout_marginStart="141dp" />
+
+    <TextView
+        android:text="@string/n_v"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/relativeLayout1"
+        android:layout_toRightOf="@+id/relativeLayout1"
+        android:layout_toEndOf="@+id/relativeLayout1"
+        android:layout_marginLeft="21dp"
+        android:layout_marginStart="21dp"
+        android:layout_marginTop="15dp"
+        android:id="@+id/txt_nev"
+        android:textSize="20sp" />
+
+    <TextView
+        android:text="@string/vonalk_d"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/editText"
+        android:layout_alignLeft="@+id/txt_nev"
+        android:layout_alignStart="@+id/txt_nev"
+        android:layout_marginTop="32dp"
+        android:id="@+id/txt_vonalkod"
+        android:textSize="20sp" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+        <Button
+            android:layout_marginLeft="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnView"
+            android:text="@string/lista"
+            android:layout_toRightOf="@+id/btnAdd"
+            tools:ignore="RtlHardcoded" />
+
+        <Button
+            android:layout_marginLeft="51dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnAdd"
+            android:text="@string/hozz_ad_add"
+            tools:ignore="RtlHardcoded"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="51dp" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:text="@string/darab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView4"
+        android:textSize="20sp"
+        android:layout_alignBottom="@+id/editText_darab"
+        android:layout_alignLeft="@+id/txt_vonalkod"
+        android:layout_alignStart="@+id/txt_vonalkod" />
+
+    <EditText
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:ems="15"
+        android:layout_marginTop="12dp"
+        android:id="@+id/editText_darab"
+        android:layout_below="@+id/editText_vonalkod"
+        android:layout_alignLeft="@+id/editText_vonalkod"
+        android:layout_alignStart="@+id/editText_vonalkod"
+        android:inputType="numberDecimal" />
+
+    <EditText
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:ems="10"
+        android:id="@+id/editText_vonalkod"
+        android:layout_alignBottom="@+id/txt_vonalkod"
+        android:layout_alignLeft="@+id/editText"
+        android:layout_alignStart="@+id/editText"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:inputType="numberSigned|numberDecimal" />
+
+    <TextView
+        android:text="@string/egys_g_r_add"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="38dp"
+        android:id="@+id/txt_ar"
+        android:layout_below="@+id/textView4"
+        android:layout_alignLeft="@+id/textView4"
+        android:layout_alignStart="@+id/textView4"
+        android:textSize="20sp" />
+
+    <EditText
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:inputType="number"
+        android:ems="10"
+        android:id="@+id/editText_darabar"
+        android:layout_alignBottom="@+id/txt_ar"
+        android:layout_alignLeft="@+id/editText_darab"
+        android:layout_alignStart="@+id/editText_darab" />
+
+    <Button
+        android:text="@string/vonalk_d_btn"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn_barcode_scan"
+        android:layout_width="120dp"
+        android:layout_alignBaseline="@+id/txt_vonalkod"
+        android:layout_alignBottom="@+id/txt_vonalkod"
+        android:layout_toRightOf="@+id/relativeLayout1"
+        android:layout_toEndOf="@+id/relativeLayout1" />
+
+</RelativeLayout>

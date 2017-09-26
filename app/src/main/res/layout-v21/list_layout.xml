@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="1">
+
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="436dp"
+        android:id="@+id/listView" />
+
+    <Button
+        android:text="@string/hozz_ad"
+        android:layout_width="match_parent"
+        android:layout_height="34dp"
+        android:id="@+id/btn_hozzaad"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:elevation="0dp"
+        android:textStyle="normal|bold" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_all_price"
+        android:textSize="25sp"
+        android:textStyle="normal|bold"
+        android:textAlignment="textStart"
+        android:text="@string/ssz_r" />
+
+</LinearLayout>

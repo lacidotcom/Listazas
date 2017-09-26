@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "897350389306",
+    "firebase_url": "https://bolti-koltes.firebaseio.com",
+    "project_id": "bolti-koltes",
+    "storage_bucket": "bolti-koltes.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:897350389306:android:50c0e3f4d2966134",
+        "android_client_info": {
+          "package_name": "com.example.laci.listazas"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "897350389306-u2ifeodcvob7idhju0j3fpmuco92h3ib.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.laci.listazas",
+            "certificate_hash": "e6423971d4ed2a7a43639596da309dc787693d6f"
+          }
+        },
+        {
+          "client_id": "897350389306-1jcevcs6pdmurljp1ka0moknshk8u8s1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCtujS67dOyBUsi_WzQ47K3Lbhg53M-KKg"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "897350389306-1jcevcs6pdmurljp1ka0moknshk8u8s1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">Listazas</string>
+    <string name="add">Add</string>
+    <string name="view_data">View Data</string>
+    <string name="button">Button</string>
+    <string name="darab">Darab</string>
+    <string name="n_v">Név</string>
+    <string name="vonalk_d">Vonalkód</string>
+    <string name="price">Ár</string>
+    <string name="ssz_r">Összár:</string>
+    <string name="hozz_ad">Hozzáad</string>
+    <string name="lista">Lista</string>
+    <string name="hozz_ad_add">Hozzáad</string>
+    <string name="vonalk_d_btn">Vonalkód</string>
+    <string name="delete">DELETE</string>
+    <string name="darab_edit">Darab</string>
+    <string name="n_v_edit">Név</string>
+    <string name="save">SAVE</string>
+    <string name="vonalk_d_edit">Vonalkód</string>
+    <string name="r_edit">Ár</string>
+    <string name="t_rl_s">TÖRLÉS</string>
+    <string name="ment_s">MENTÉS</string>
+    <string name="egys_g_r_add">Egységár</string>
+    <string name="egys_g_r_edit">Egységár</string>
+</resources>

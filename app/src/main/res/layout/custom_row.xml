@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:weightSum="1"
+    android:layout_height="80dp"
+    android:baselineAligned="false"
+    android:id="@+id/custom_layout">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/tv_ar"
+        android:textSize="25sp"
+        android:fontFamily="sans-serif"
+        android:textAlignment="textStart"
+        android:layout_weight="1" />
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="100dp"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/tv_osszar"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="382dp"
+        android:id="@+id/custom_sub_layout">
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_nev"
+            android:textSize="25sp"
+            android:layout_width="match_parent"
+            android:textStyle="normal|bold" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_piece"
+            android:layout_weight="0.42"
+            android:textSize="20sp"
+            android:textAlignment="viewStart" />
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_barcode"
+            android:layout_weight="0.42"
+            android:textSize="15sp"
+            android:layout_width="match_parent" />
+
+    </LinearLayout>
+
+</LinearLayout>
