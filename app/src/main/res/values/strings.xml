@@ -22,4 +22,5 @@
     <string name="ment_s">MENTÉS</string>
     <string name="egys_g_r_add">Egységár</string>
     <string name="egys_g_r_edit">Egységár</string>
+    <string name="action_settings">Settings</string>
 </resources>
