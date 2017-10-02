@@ -112,7 +112,7 @@ public class EditDataActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.shops) {
             return true;
         }
 

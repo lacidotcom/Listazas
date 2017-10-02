@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="1"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <EditText
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:ems="10"
+            android:id="@+id/eT_percent"
+            android:hint="@string/percent"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_width="140dp" />
+
+        <TextView
+            android:text="@string/szazalek"
+            android:layout_width="140dp"
+            android:id="@+id/tv_percent"
+            android:textStyle="normal|bold"
+            android:textSize="20sp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:layout_height="40dp" />
+
+        <EditText
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:ems="10"
+            android:id="@+id/eT_summa"
+            android:hint="@string/ft"
+            android:layout_width="140dp"
+            android:layout_alignBaseline="@+id/tv_osszeg"
+            android:layout_alignBottom="@+id/tv_osszeg"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
+
+        <TextView
+            android:text="@string/osszeg"
+            android:layout_width="140dp"
+            android:id="@+id/tv_osszeg"
+            android:textStyle="normal|bold"
+            android:textSize="20sp"
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:layout_below="@+id/tv_percent"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_height="30dp" />
+
+        <Button
+            android:text="@string/szamol"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btn_OK"
+            android:layout_marginTop="22dp"
+            android:layout_below="@+id/tv_kedvezmeny"
+            android:layout_centerHorizontal="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/tv_kedvezmeny"
+            android:layout_toEndOf="@+id/btn_OK"
+            android:id="@+id/tv_show_kedvez"
+            android:textSize="20sp"
+            android:textColor="@android:color/holo_green_light"
+            android:layout_alignLeft="@+id/eT_summa"
+            android:layout_alignStart="@+id/eT_summa" />
+
+        <TextView
+            android:text="@string/kedvezm_nyes_r"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:id="@+id/tv_kedvezmeny"
+            android:textStyle="normal|bold"
+            android:textSize="15sp"
+            android:layout_below="@+id/eT_summa"
+            android:layout_alignRight="@+id/tv_osszeg"
+            android:layout_alignEnd="@+id/tv_osszeg" />
+
+    </RelativeLayout>
+
+</LinearLayout>

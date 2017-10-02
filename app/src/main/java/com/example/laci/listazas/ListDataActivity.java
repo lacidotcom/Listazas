@@ -8,6 +8,8 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.annotation.NonNull;
+import android.support.v4.app.FragmentManager;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -18,6 +20,7 @@ import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
@@ -29,6 +32,7 @@ import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.appindexing.Thing;
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.vision.text.Text;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -212,7 +216,49 @@ public class ListDataActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.set_percentage) {
+            AlertDialog.Builder mBuilder = new AlertDialog.Builder(ListDataActivity.this);
+            View mView = getLayoutInflater().inflate(R.layout.percentage_dialog,null);
+            final EditText percent = (EditText) mView.findViewById(R.id.eT_percent);
+            final EditText summa = (EditText) mView.findViewById(R.id.eT_summa);
+            Button OK = (Button) mView.findViewById(R.id.btn_OK);
+            final TextView discount = (TextView) mView.findViewById(R.id.tv_show_kedvez);
+
+
+
+            OK.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if(percent.getText().toString().isEmpty() && summa.getText().toString().isEmpty() ){
+                        toastMessage("Kötelező a kitöltés");
+                    }else if (!percent.getText().toString().isEmpty() && !summa.getText().toString().isEmpty()){
+                        double temp = mDatabasHelper.getOsszar();
+                        temp = temp - Integer.parseInt(String.valueOf(summa.getText()));
+                        temp = temp - (temp * (Double.parseDouble(String.valueOf(percent.getText()))/100));
+                        String temp_str = String.valueOf((int)temp) + " Ft";
+                        discount.setText(temp_str);
+                        //toastMessage("Sikeres megadás");
+                    }else if (percent.getText().toString().isEmpty() && !summa.getText().toString().isEmpty()){
+                        double temp = mDatabasHelper.getOsszar();
+                        temp = temp - Integer.parseInt(String.valueOf(summa.getText()));
+                        //temp = temp * (Double.parseDouble(String.valueOf(percent.getText()))/100);
+                        String temp_str = String.valueOf((int)temp) + " Ft";
+                        discount.setText(temp_str);
+                        //toastMessage("Sikeres megadás");
+                    }else if (!percent.getText().toString().isEmpty() && summa.getText().toString().isEmpty()){
+                        double temp = mDatabasHelper.getOsszar();
+                        //temp = temp - Integer.parseInt(String.valueOf(summa.getText()));
+                        temp = temp - (temp * (Double.parseDouble(String.valueOf(percent.getText()))/100));
+                        String temp_str = String.valueOf((int) temp) + " Ft";
+                        discount.setText(temp_str);
+                        //toastMessage("Sikeres megadás");
+                    }
+                }
+            });
+            mBuilder.setView(mView);
+            final AlertDialog dialog = mBuilder.create();
+            dialog.show();
+
             return true;
         }
 
