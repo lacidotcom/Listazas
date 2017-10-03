@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textEmailAddress"
+        android:ems="10"
+        android:id="@+id/eT_email"
+        android:hint="@string/arya_facelessmen_bra"
+        android:layout_margin="15dp" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:ems="10"
+        android:id="@+id/eT_password"
+        android:hint="@string/nymera1234"
+        android:layout_margin="15dp" />
+
+    <Button
+        android:text="@string/regisztr_ci"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn_register" />
+
+    <TextView
+        android:text="Ha már regisztrált kattintson ide!"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_signin"
+        android:textAlignment="center"
+        android:textStyle="normal|italic"
+        android:textColor="@color/cast_libraries_material_featurehighlight_outer_highlight_default_color" />
+</LinearLayout>

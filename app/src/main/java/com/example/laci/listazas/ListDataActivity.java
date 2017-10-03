@@ -1,5 +1,6 @@
 package com.example.laci.listazas;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteCursor;
@@ -12,6 +13,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -32,7 +34,10 @@ import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.appindexing.Thing;
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.gms.vision.text.Text;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -94,6 +99,7 @@ public class ListDataActivity extends AppCompatActivity {
                 // ...
             }
         };
+
     }
 
     private void ListAllItems() {
@@ -209,7 +215,7 @@ public class ListDataActivity extends AppCompatActivity {
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
+    public boolean onOptionsItemSelected(final MenuItem item) {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
@@ -260,6 +266,66 @@ public class ListDataActivity extends AppCompatActivity {
             dialog.show();
 
             return true;
+        }else if(id == R.id.sort){
+            AlertDialog.Builder mBuilder = new AlertDialog.Builder(ListDataActivity.this);
+            View mView = getLayoutInflater().inflate(R.layout.sorting_dialog,null);
+            Button alphabet = (Button)mView.findViewById(R.id.btn_alphabet);
+            Button revalphabet = (Button)mView.findViewById(R.id.btn_revaplhabet);
+            Button price_asc = (Button)mView.findViewById(R.id.btn_price_asc);
+            Button price_desc = (Button)mView.findViewById(R.id.btn_price_dec);
+            Button piece_asc = (Button)mView.findViewById(R.id.btn_piece_asc);
+            Button piece_desc = (Button)mView.findViewById(R.id.btn_pice_desc);
+
+            alphabet.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    mDatabasHelper.setOrderby("name ASC");
+                    ListAllItems();
+                }
+            });
+            revalphabet.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    mDatabasHelper.setOrderby("name DESC");
+                    ListAllItems();
+                }
+            });
+            price_asc.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    mDatabasHelper.setOrderby("price ASC");
+                    ListAllItems();
+                }
+            });
+            price_desc.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    mDatabasHelper.setOrderby("price DESC");
+                    ListAllItems();
+                }
+            });
+            piece_asc.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    mDatabasHelper.setOrderby("piece ASC");
+                    ListAllItems();
+                }
+            });
+            piece_desc.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    mDatabasHelper.setOrderby("piece DESC");
+                    ListAllItems();
+                }
+            });
+
+            mBuilder.setView(mView);
+            final AlertDialog dialog = mBuilder.create();
+            dialog.show();
+        }else if(id == R.id.login){
+
+            Intent intent = new Intent(ListDataActivity.this, FirebaseActivity.class);
+            startActivity(intent);
         }
 
         return super.onOptionsItemSelected(item);

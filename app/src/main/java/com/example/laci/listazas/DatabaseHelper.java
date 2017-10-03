@@ -13,6 +13,7 @@ import android.util.Log;
  */
 
 public class DatabaseHelper extends SQLiteOpenHelper {
+    private String orderby = "null";
     ///////////////////////////////
 
     public static final String KEY_ROWID = "ID";
@@ -119,10 +120,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(query);
      }
 
+    public void setOrderby(String order){
+        orderby = order;
+    }
+
     public Cursor getAllRows(){
         SQLiteDatabase db = this.getWritableDatabase();
-        String where = null;
-        Cursor c = db.query(TABLE_NAME,ALL_KEYS,null,null,null,null,null);
+        Cursor c = db.query(TABLE_NAME,ALL_KEYS,null,null,null,null,orderby);
         if(c!= null){
             c.moveToFirst();
         }

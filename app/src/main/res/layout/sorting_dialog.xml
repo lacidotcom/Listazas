@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <Button
+        android:text="@string/bet_rend"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn_alphabet" />
+
+    <Button
+        android:text="@string/ford_tott_bet_rend"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn_revaplhabet" />
+
+    <Button
+        android:text="@string/rszerint_cs_kken"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn_price_dec" />
+
+    <Button
+        android:text="@string/rszerint_n_vekv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn_price_asc" />
+
+    <Button
+        android:text="@string/darabsz_m_n_vekv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn_piece_asc" />
+
+    <Button
+        android:text="@string/darabsz_m_cs_kken"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn_pice_desc" />
+</LinearLayout>
