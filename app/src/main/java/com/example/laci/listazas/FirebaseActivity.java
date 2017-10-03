@@ -1,6 +1,7 @@
 package com.example.laci.listazas;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -82,7 +83,7 @@ public class FirebaseActivity extends AppCompatActivity implements View.OnClickL
 
     private void registerUser(){
         final String email = editTextEmail.getText().toString().trim();
-        final String password = editTextEmail.getText().toString().trim();
+        final String password = editTextPassword.getText().toString().trim();
 
         if (TextUtils.isEmpty(email)) {
             toastMessage("Adj meg egy email címet!");
@@ -103,7 +104,7 @@ public class FirebaseActivity extends AppCompatActivity implements View.OnClickL
                     toastMessage("sikeres regisztáció");
                     progressDialog.dismiss();
                 }else{
-                    toastMessage("sikertlen regisztráció");
+                    toastMessage("sikertelen regisztráció");
                     progressDialog.dismiss();
                 }
             }
@@ -117,7 +118,8 @@ public class FirebaseActivity extends AppCompatActivity implements View.OnClickL
             registerUser();
         }
         if(view == textViewSignin){
-
+            finish();
+            startActivity(new Intent(FirebaseActivity.this, LoginActivity.class));
         }
     }
 }

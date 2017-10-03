@@ -44,5 +44,10 @@
     <string name="nymera1234">Nymera1234</string>
     <string name="arya_facelessmen_bra">arya@facelessmen.bra</string>
     <string name="regisztr_ci">Regisztráció</string>
+    <string name="ha_m_g_nem_regisztr_lt_kattintson_ide">Ha még nem regisztrált kattintson ide!</string>
+    <string name="bel_p_s">belépés</string>
+    <string name="felhaszn_l_bel_p_s">Felhasználó belépés</string>
+    <string name="felhaszn_l_regisztr_l_s">Felhasználó regisztrálás</string>
+    <string name="ha_m_r_regisztr_lt_kattintson_ide">Ha már regisztrált kattintson ide!</string>
 
 </resources>
