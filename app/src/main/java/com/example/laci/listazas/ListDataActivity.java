@@ -326,6 +326,10 @@ public class ListDataActivity extends AppCompatActivity {
 
             Intent intent = new Intent(ListDataActivity.this, FirebaseActivity.class);
             startActivity(intent);
+        }else if(id == R.id.shops){
+
+            Intent intent = new Intent(ListDataActivity.this, PdfViewerActivity.class);
+            startActivity(intent);
         }
 
         return super.onOptionsItemSelected(item);

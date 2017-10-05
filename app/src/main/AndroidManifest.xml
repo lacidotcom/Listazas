@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.laci.listazas">
 
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -13,7 +14,7 @@
         <activity
             android:name=".MainActivity"
             android:label="Elem hozzáadás"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ListDataActivity"
             android:label="Lista"
@@ -27,14 +28,17 @@
         <activity
             android:name=".EditDataActivity"
             android:label="Szerkesztés"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".FirebaseActivity"
             android:label="Regisztráció"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".LoginActivity"
             android:label="Login"
+            android:screenOrientation="portrait" />
+        <activity android:name=".PdfViewerActivity"
+            android:label="PDF Viewer"
             android:screenOrientation="portrait"></activity>
         <!--
  ATTENTION: This was auto-generated to add Google Play services to your project for
@@ -43,6 +47,7 @@
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
+
 
     </application>
 

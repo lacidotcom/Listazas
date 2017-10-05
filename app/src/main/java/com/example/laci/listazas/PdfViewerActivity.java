@@ -1,0 +1,85 @@
+package com.example.laci.listazas;
+
+import android.os.AsyncTask;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.View;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
+import android.widget.ProgressBar;
+
+import com.github.barteksc.pdfviewer.PDFView;
+import com.github.barteksc.pdfviewer.source.InputStreamSource;
+
+import java.io.BufferedInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
+
+public class PdfViewerActivity extends AppCompatActivity {
+
+    WebView webview;
+    ProgressBar progressbar;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_pdf_viewer);
+        webview = (WebView)findViewById(R.id.webview);
+        progressbar = (ProgressBar) findViewById(R.id.progressbar);
+        webview.getSettings().setJavaScriptEnabled(true);
+        String filename ="http://www.pdf995.com/samples/pdf.pdf";
+        webview.loadUrl("http://docs.google.com/gview?embedded=true&url="+filename);
+
+        webview.setWebViewClient(new WebViewClient() {
+
+            public void onPageFinished(WebView view, String url) {
+                // do your stuff here
+                progressbar.setVisibility(View.GONE);
+            }
+        });
+
+    }
+
+    /*
+
+    PDFView pdfView;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_pdf_viewer);
+
+        pdfView = (PDFView) findViewById(R.id.pdfView);
+
+        new RetrivePDFStream().execute("https://firebasestorage.googleapis.com/v0/b/bolti-koltes.appspot.com/o/akciok%2Ftesco_hipermarket_2017-09-28.pdf?alt=media&token=45c4cbac-7ff2-444f-bf77-43ba3dbc2dc8");
+
+    }
+
+    class RetrivePDFStream extends AsyncTask<String,Void,InputStream>{
+
+        @Override
+        protected InputStream doInBackground(String... strings) {
+            InputStream inputStream = null;
+            try{
+                URL url = new URL(strings[0]);
+                HttpURLConnection urlConnection = (HttpURLConnection)url.openConnection();
+                if(urlConnection.getResponseCode() == 200){
+                    inputStream = new BufferedInputStream(urlConnection.getInputStream());
+                }
+            }catch (IOException e){
+                return null;
+            }
+            return inputStream;
+        }
+
+        @Override
+        protected void onPostExecute(InputStream inputStream) {
+            pdfView.fromStream(inputStream).load();
+        }
+    }
+*/
+
+
+}
