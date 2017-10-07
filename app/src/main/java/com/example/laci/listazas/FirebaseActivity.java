@@ -1,10 +1,12 @@
 package com.example.laci.listazas;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.multidex.MultiDex;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.Menu;
@@ -121,5 +123,11 @@ public class FirebaseActivity extends AppCompatActivity implements View.OnClickL
             finish();
             startActivity(new Intent(FirebaseActivity.this, LoginActivity.class));
         }
+    }
+
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(base);
+        MultiDex.install(this);
     }
 }
