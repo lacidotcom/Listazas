@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteCursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -156,7 +157,24 @@ public class ListDataActivity extends AppCompatActivity {
                 }
             }
         });
+        mListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener(){
+            @Override
+            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
+                view.findFocus();
+                int default_color =  default_color = ((TextView) view.findViewById(R.id.tv_nev)).getCurrentTextColor();
+                //view.setBackgroundColor(Color.GREEN);
+                //toastMessage(String.valueOf(default_color));
+                if(((TextView)view.findViewById(R.id.tv_ar)).getCurrentTextColor() != Color.GREEN){
+                    ((TextView)view.findViewById(R.id.tv_ar)).setTextColor(Color.GREEN);
+                }else{
+                    ((TextView)view.findViewById(R.id.tv_ar)).setTextColor(default_color);
+                }
+                return true;
+            }
+        });
     }
+
+
 
     public void onClick(View view) {
         Intent intent = new Intent(ListDataActivity.this, MainActivity.class);
@@ -277,6 +295,7 @@ public class ListDataActivity extends AppCompatActivity {
             Button price_desc = (Button)mView.findViewById(R.id.btn_price_dec);
             Button piece_asc = (Button)mView.findViewById(R.id.btn_piece_asc);
             Button piece_desc = (Button)mView.findViewById(R.id.btn_pice_desc);
+            Button cronolog = (Button)mView.findViewById(R.id.btn_cronolog);
 
             alphabet.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -320,6 +339,13 @@ public class ListDataActivity extends AppCompatActivity {
                     ListAllItems();
                 }
             });
+            cronolog.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    mDatabasHelper.setOrderby("null");
+                    ListAllItems();
+                }
+            });
 
             mBuilder.setView(mView);
             final AlertDialog dialog = mBuilder.create();
@@ -331,6 +357,10 @@ public class ListDataActivity extends AppCompatActivity {
         }else if(id == R.id.shops){
 
             Intent intent = new Intent(ListDataActivity.this, PdfViewerActivity.class);
+            startActivity(intent);
+        }else if(id == R.id.chat){
+
+            Intent intent = new Intent(ListDataActivity.this, ChatActivity.class);
             startActivity(intent);
         }
 

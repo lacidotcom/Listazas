@@ -27,8 +27,19 @@
         app:showAsAction="never" />
 
     <item
+        android:id="@+id/chat"
+        android:orderInCategory="100"
+        android:title="@string/akci_figyel_f_rum"
+        app:showAsAction="never" />
+
+    <item
         android:id="@+id/login"
         android:orderInCategory="100"
         android:title="@string/login"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/logout"
+        android:orderInCategory="100"
+        android:title="@string/kijelentkez_s"
         app:showAsAction="never" />
 </menu>

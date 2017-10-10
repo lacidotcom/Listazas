@@ -4,18 +4,25 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
 import com.github.barteksc.pdfviewer.PDFView;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+
 
 public class PdfViewerActivity extends AppCompatActivity {
 
@@ -45,6 +52,8 @@ public class PdfViewerActivity extends AppCompatActivity {
 
 */
 
+
+    private StorageReference mStorageRef;
     PDFView pdfView;
 
     @Override
@@ -52,9 +61,21 @@ public class PdfViewerActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pdf_viewer);
 
+        /*
+        mStorageRef = FirebaseStorage.getInstance().getReferenceFromUrl("gs://bolti-koltes.appspot.com").child("/akciok/tesco.pdf");
+
+
+        mStorageRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener() {
+            @Override
+            public void onSuccess(Object o) {
+                Log.i("Main", "File uri: " + o.toString());
+                new RetrivePDFStream().execute(o.toString());
+            }
+        });
+*/
         pdfView = (PDFView) findViewById(R.id.pdfView);
 
-        new RetrivePDFStream().execute("https://firebasestorage.googleapis.com/v0/b/bolti-koltes.appspot.com/o/akciok%2Ftesco_hipermarket_2017-09-28.pdf?alt=media&token=45c4cbac-7ff2-444f-bf77-43ba3dbc2dc8");
+        new RetrivePDFStream().execute("https://firebasestorage.googleapis.com/v0/b/bolti-koltes.appspot.com/o/akciok%2Ftesco.pdf?alt=media&token=72b39d69-9e0b-4b6b-bdff-77e35be048d2");new RetrivePDFStream().execute("www.pdf995.com/samples/pdf.pdf");
 
     }
 
@@ -80,6 +101,8 @@ public class PdfViewerActivity extends AppCompatActivity {
             pdfView.fromStream(inputStream).load();
         }
     }
+
+
 
 /*
     private PDFView pdfView;
