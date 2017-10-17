@@ -26,33 +26,6 @@ import java.net.URL;
 
 public class PdfViewerActivity extends AppCompatActivity {
 
-/*
-    WebView webview;
-    ProgressBar progressbar;
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_pdf_viewer);
-        webview = (WebView)findViewById(R.id.webview);
-        progressbar = (ProgressBar) findViewById(R.id.progressbar);
-        webview.getSettings().setJavaScriptEnabled(true);
-        String filename ="https://firebasestorage.googleapis.com/v0/b/bolti-koltes.appspot.com/o/akciok%2Ftesco_hipermarket_2017-09-28.pdf?alt=media&token=45c4cbac-7ff2-444f-bf77-43ba3dbc2dc8";
-        webview.loadUrl("http://docs.google.com/gview?embedded=true&url="+filename);
-
-        webview.setWebViewClient(new WebViewClient() {
-
-            public void onPageFinished(WebView view, String url) {
-                // do your stuff here
-                progressbar.setVisibility(View.GONE);
-            }
-        });
-
-    }
-
-*/
-
-
     private StorageReference mStorageRef;
     PDFView pdfView;
 

@@ -80,8 +80,6 @@ public class ListDataActivity extends AppCompatActivity {
         mDatabasHelper = new DatabaseHelper(this);
         btn_add = (Button) findViewById(R.id.btn_hozzaad);
 
-        //plvw();
-        //populateListView();
         ListAllItems();
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -352,7 +350,7 @@ public class ListDataActivity extends AppCompatActivity {
             dialog.show();
         }else if(id == R.id.login){
 
-            Intent intent = new Intent(ListDataActivity.this, FirebaseActivity.class);
+            Intent intent = new Intent(ListDataActivity.this, LoginActivity.class);
             startActivity(intent);
         }else if(id == R.id.shops){
 
@@ -361,6 +359,10 @@ public class ListDataActivity extends AppCompatActivity {
         }else if(id == R.id.chat){
 
             Intent intent = new Intent(ListDataActivity.this, ChatActivity.class);
+            startActivity(intent);
+        }else if(id == R.id.fast_shop){
+
+            Intent intent = new Intent(ListDataActivity.this, FastShoppingActivity.class);
             startActivity(intent);
         }
 

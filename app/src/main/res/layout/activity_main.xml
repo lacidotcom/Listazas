@@ -7,38 +7,6 @@
 
     tools:context="com.example.laci.listazas.MainActivity">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="16dp">
-
-        <Button
-            android:id="@+id/btnAdd"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginLeft="51dp"
-            android:layout_marginStart="51dp"
-            android:text="@string/hozz_ad_add"
-            tools:ignore="RtlHardcoded" />
-
-        <Button
-            android:id="@+id/btnView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="34dp"
-            android:text="@string/lista"
-            tools:ignore="RtlHardcoded"
-            android:layout_alignParentTop="true"
-            android:layout_toRightOf="@+id/btnAdd"
-            android:layout_toEndOf="@+id/btnAdd"
-            android:layout_marginStart="34dp" />
-
-    </RelativeLayout>
-
     <include
         android:id="@+id/toolbar"
         layout="@layout/app_bar"
@@ -62,7 +30,7 @@
             android:layout_toRightOf="@+id/relativeLayout1"
             android:text="@string/vonalk_d_btn" />
 
-        <EditText
+        <AutoCompleteTextView
             android:id="@+id/editText"
             android:layout_width="200dp"
             android:layout_height="50dp"
@@ -74,6 +42,7 @@
             android:inputType=""
             android:textAlignment="center" />
 
+
         <TextView
             android:id="@+id/txt_nev"
             android:layout_width="wrap_content"
@@ -83,6 +52,8 @@
             android:layout_marginTop="15dp"
             android:text="@string/n_v"
             android:textSize="20sp" />
+
+
 
         <TextView
             android:id="@+id/txt_vonalkod"
@@ -97,7 +68,7 @@
             android:visibility="invisible" />
 
         <TextView
-            android:id="@+id/textView4"
+            android:id="@+id/tv_egyseg"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignBottom="@+id/editText_darab"
@@ -133,9 +104,9 @@
             android:id="@+id/txt_ar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/textView4"
-            android:layout_alignStart="@+id/textView4"
-            android:layout_below="@+id/textView4"
+            android:layout_alignLeft="@+id/tv_egyseg"
+            android:layout_alignStart="@+id/tv_egyseg"
+            android:layout_below="@+id/tv_egyseg"
             android:layout_marginTop="38dp"
             android:text="@string/egys_g_r_add"
             android:textSize="20sp" />
@@ -149,6 +120,39 @@
             android:layout_alignStart="@+id/editText_darab"
             android:ems="10"
             android:inputType="number" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true">
+
+        <Button
+            android:id="@+id/btnAdd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="51dp"
+            android:layout_marginStart="51dp"
+            android:text="@string/hozz_ad_add"
+            tools:ignore="RtlHardcoded" />
+
+        <Button
+            android:id="@+id/btnView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="34dp"
+            android:text="@string/lista"
+            tools:ignore="RtlHardcoded"
+            android:layout_alignParentTop="true"
+            android:layout_toRightOf="@+id/btnAdd"
+            android:layout_toEndOf="@+id/btnAdd"
+            android:layout_marginStart="34dp" />
+
     </RelativeLayout>
 
 

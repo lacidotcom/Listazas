@@ -121,7 +121,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "signInWithCredential:success");
                             FirebaseUser user = mAuth.getCurrentUser();
-                            toastMessage("asdads");
+                            toastMessage("Már be van jelentkezve");
                             //itt kell UI-t hívni
                         } else {
                             // If sign in fails, display a message to the user.

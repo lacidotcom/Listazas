@@ -57,7 +57,7 @@ public class EditDataActivity extends AppCompatActivity {
 
         name.setText(selectedName);
         barcode.setText(selectedBarcode);
-        piece.setText(String.valueOf(selectedPiece));
+        piece.setText(String.valueOf( selectedPiece));
         price.setText(String.valueOf(selectedPrice));
 
         btnSave.setOnClickListener(new View.OnClickListener() {

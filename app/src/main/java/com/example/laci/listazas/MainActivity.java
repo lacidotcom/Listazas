@@ -1,8 +1,10 @@
 package com.example.laci.listazas;
 
+import android.content.ClipData;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -12,6 +14,8 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -19,15 +23,20 @@ import android.widget.Toast;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "MainActivity";
 
     DatabaseHelper mDatabaseHelper;
     private Button btnAdd, btnViewData, btn_barcode_scan;
-    private EditText editText, eT_barcode, eT_piece,eT_price;
+    private EditText eT_barcode, eT_piece,eT_price;
+    private AutoCompleteTextView editText;
+
 
     private Toolbar myToolbar;
+    private ArrayList<String> ItemNames = new ArrayList<String>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,8 +46,10 @@ public class MainActivity extends AppCompatActivity {
         myToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(myToolbar);
 
+
         //setContentView(R.layout.activity_main);
-        editText = (EditText) findViewById(R.id.editText);
+        //editText = (EditText) findViewById(R.id.editText);
+        editText = (AutoCompleteTextView) findViewById(R.id.editText);
         eT_barcode = (EditText) findViewById(R.id.editText_vonalkod);
         eT_piece = (EditText) findViewById(R.id.editText_darab);
         eT_price = (EditText) findViewById(R.id.editText_darabar);
@@ -46,6 +57,9 @@ public class MainActivity extends AppCompatActivity {
         btnViewData = (Button) findViewById(R.id.btnView);
         mDatabaseHelper = new DatabaseHelper(this);
         btn_barcode_scan = (Button) findViewById(R.id.btn_barcode_scan);
+
+        SuggestName();
+
 
         btn_barcode_scan.setOnClickListener(new View.OnClickListener(){
 
@@ -61,6 +75,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View view) {
+                CheckName();
                 String newEntry = editText.getText().toString();
                 String entry_vonalK = eT_barcode.getText().toString();
                 float entry_darab = 0;
@@ -150,6 +165,46 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void SuggestName(){
+        //AutoComplete
+        Cursor cursor_autoc = mDatabaseHelper.getAllRows();
+        if(cursor_autoc.moveToFirst()){
+            do{
+                String name = cursor_autoc.getString(cursor_autoc.getColumnIndex(DatabaseHelper.ALL_KEYS[1]));
+                ItemNames.add(name);
+            }while(cursor_autoc.moveToNext());
+        }
+
+        if(ItemNames != null) {
+            ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.select_dialog_item, ItemNames);
+            editText.setThreshold(1);
+            editText.setAdapter(adapter);
+        }else{
+            Toast.makeText(MainActivity.this,"Hiba ItemNames",Toast.LENGTH_LONG).show();
+        }
+        CheckName();
+    }
+
+    public void CheckName(){
+        Cursor cursor_autoc = mDatabaseHelper.getAllRows();
+        String name_sug = editText.getText().toString();
+        //Toast.makeText(MainActivity.this,"Itt a hiba",Toast.LENGTH_LONG).show();
+            if(cursor_autoc.moveToFirst()){
+                do{
+                    String name = cursor_autoc.getString(cursor_autoc.getColumnIndex(DatabaseHelper.ALL_KEYS[1]));
+                    String bc = cursor_autoc.getString(cursor_autoc.getColumnIndex(DatabaseHelper.ALL_KEYS[2]));
+                    String piece = "1";
+                    String price = cursor_autoc.getString(cursor_autoc.getColumnIndex(DatabaseHelper.ALL_KEYS[4]));
+                    if(name.equals(name_sug)){
+                        eT_barcode.setText(bc);
+                        eT_piece.setText(piece);
+                        eT_price.setText(price);
+                    }
+                }while(cursor_autoc.moveToNext());
+            }
+
     }
 
 

@@ -8,6 +8,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import java.util.ArrayList;
+
 /**
  * Created by Laci on 2017. 03. 29..
  */
@@ -33,6 +35,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public static final String[] ALL_KEYS = {COL1,COL2,COL3,COL4,COL5,COL6};
     public static final String[] SOME_KEYS = {COL2,COL3,COL4,COL6};
+    public static final String[] COL2_HEAP = {COL2};
 
     public DatabaseHelper(Context context) {
         super(context, TABLE_NAME,null,1);
@@ -132,6 +135,33 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
         return c;
     }
+
+    public Cursor getNameRows(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor c = db.query(TABLE_NAME,COL2_HEAP,null,null,null,null,null);
+        if(c!= null){
+            c.moveToFirst();
+        }
+        return c;
+    }
+
+    public String[] getItemNames(){
+        Cursor cursor = getReadableDatabase().rawQuery(("SELECT " + COL2 + " FROM "+ TABLE_NAME), null);
+        cursor.moveToFirst();
+        //ArrayList<String> names = new ArrayList<String>();
+        String[] temp = null;
+        int i = 0;
+        while(!cursor.isAfterLast()) {
+            //names.add(cursor.getString(cursor.getColumnIndex("name")));
+            temp[i] = cursor.getString(cursor.getColumnIndex("name"));
+            i++;
+            cursor.moveToNext();
+        }
+        cursor.close();
+        //return names.toArray(new String[names.size()]);
+        return temp;
+    }
+
 
     public Cursor fetchAll(){
         SQLiteDatabase db = this.getReadableDatabase();

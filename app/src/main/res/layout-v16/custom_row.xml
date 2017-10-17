@@ -35,19 +35,11 @@
     </LinearLayout>
 
     <TextView
-        android:layout_width="85dp"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/tv_ar"
         android:textSize="25sp"
         android:fontFamily="sans-serif"
-        android:textAlignment="textStart" />
-
-    <TextView
-        android:text="Ft"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:id="@+id/text_ft"
-        android:textAlignment="center"
-        android:textSize="25sp" />
+        android:textAlignment="textEnd" />
 
 </LinearLayout>
