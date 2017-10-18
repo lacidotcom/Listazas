@@ -14,6 +14,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
@@ -60,6 +61,12 @@ public class MainActivity extends AppCompatActivity {
 
         SuggestName();
 
+        editText.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                CheckName();
+            }
+        });
 
         btn_barcode_scan.setOnClickListener(new View.OnClickListener(){
 
@@ -75,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View view) {
-                CheckName();
+                //CheckName();
                 String newEntry = editText.getText().toString();
                 String entry_vonalK = eT_barcode.getText().toString();
                 float entry_darab = 0;
@@ -184,7 +191,7 @@ public class MainActivity extends AppCompatActivity {
         }else{
             Toast.makeText(MainActivity.this,"Hiba ItemNames",Toast.LENGTH_LONG).show();
         }
-        CheckName();
+        //CheckName();
     }
 
     public void CheckName(){
