@@ -25,7 +25,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     private static final String TAG = "DatabaseHelper";
 
+    private static final String DB_NAME = "topkek";
+
     private static final String TABLE_NAME = "elso_adatbazis";
+    private static final String TABLE_NAME_FIX = "fix_database";
     private static final String COL1 = "_id";
     private static final String COL2 = "name";
     private static final String COL3 = "barcode";
@@ -35,22 +38,27 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public static final String[] ALL_KEYS = {COL1,COL2,COL3,COL4,COL5,COL6};
     public static final String[] SOME_KEYS = {COL2,COL3,COL4,COL6};
-    public static final String[] COL2_HEAP = {COL2};
 
     public DatabaseHelper(Context context) {
-        super(context, TABLE_NAME,null,1);
+        super(context, DB_NAME,null,1);
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
+        String createTable2 = "CREATE TABLE "+ TABLE_NAME_FIX + "(_id INTEGER PRIMARY KEY AUTOINCREMENT, " + COL2 +
+                " TEXT, " + COL3 + " TEXT, " + COL4 + " REAL, " + COL5 + " INTEGER, " + COL6 + " INTEGER)";
+        db.execSQL(createTable2);
         String createTable = "CREATE TABLE "+ TABLE_NAME + "(_id INTEGER PRIMARY KEY AUTOINCREMENT, " + COL2 +
                 " TEXT, " + COL3 + " TEXT, " + COL4 + " REAL, " + COL5 + " INTEGER, " + COL6 + " INTEGER)";
         db.execSQL(createTable);
+
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int i, int i1) {
         db.execSQL("DROP IF TABLE EXISTS " + TABLE_NAME);
+        //onCreate(db);
+        db.execSQL("DROP IF TABLE EXISTS " + TABLE_NAME_FIX);
         onCreate(db);
     }
 
@@ -64,6 +72,24 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         contentValues.put(COL5,entry_darab_ar);
 
         long result = db.insert(TABLE_NAME,null,contentValues);
+
+        if(result == -1) {
+            return false;
+        }else {
+            return true;
+        }
+    }
+
+    public boolean addData_FIX(String item, String entry_vonalK, float entry_darab, float entry_darab_ar){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(COL2,item);
+        contentValues.put(COL3,entry_vonalK);
+        contentValues.put(COL4,entry_darab);
+        contentValues.put(COL5,entry_darab_ar);
+
+        long result = db.insert(TABLE_NAME_FIX,null,contentValues);
 
         if(result == -1) {
             return false;
@@ -136,30 +162,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return c;
     }
 
-    public Cursor getNameRows(){
+    public Cursor getAllRows_FIX(){
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor c = db.query(TABLE_NAME,COL2_HEAP,null,null,null,null,null);
+        Cursor c = db.query(TABLE_NAME_FIX,ALL_KEYS,null,null,null,null,null);
         if(c!= null){
             c.moveToFirst();
         }
         return c;
-    }
-
-    public String[] getItemNames(){
-        Cursor cursor = getReadableDatabase().rawQuery(("SELECT " + COL2 + " FROM "+ TABLE_NAME), null);
-        cursor.moveToFirst();
-        //ArrayList<String> names = new ArrayList<String>();
-        String[] temp = null;
-        int i = 0;
-        while(!cursor.isAfterLast()) {
-            //names.add(cursor.getString(cursor.getColumnIndex("name")));
-            temp[i] = cursor.getString(cursor.getColumnIndex("name"));
-            i++;
-            cursor.moveToNext();
-        }
-        cursor.close();
-        //return names.toArray(new String[names.size()]);
-        return temp;
     }
 
 
@@ -168,14 +177,4 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return db.query(TABLE_NAME,ALL_KEYS,null,null,null,null,null);
     }
 
-    public Cursor getRow(long rowId) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        String where = KEY_ROWID + "=" + rowId;
-        Cursor c = 	db.query(true, TABLE_NAME, ALL_KEYS,
-                where, null, null, null, null, null);
-        if (c != null) {
-            c.moveToFirst();
-        }
-        return c;
-    }
 }

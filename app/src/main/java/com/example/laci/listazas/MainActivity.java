@@ -7,6 +7,7 @@ import android.database.Cursor;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.util.AsyncListUtil;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
@@ -148,7 +149,15 @@ public class MainActivity extends AppCompatActivity {
         if(insertData){
             Toast.makeText(MainActivity.this,"Sikeresen hozzaadva",Toast.LENGTH_LONG).show();
         }else{
-            Toast.makeText(MainActivity.this,"Hiba",Toast.LENGTH_LONG).show();
+            Toast.makeText(MainActivity.this,"Hiba történt hozzáadáskor",Toast.LENGTH_LONG).show();
+        }
+        if(!Exist_in_fix(newEntry)) {
+            insertData = mDatabaseHelper.addData_FIX(newEntry, entry_vonalK, entry_darab, entry_darab_ar);
+            if(insertData){
+                Toast.makeText(MainActivity.this,"Sikeresen hozzáadva",Toast.LENGTH_LONG).show();
+            }else{
+                Toast.makeText(MainActivity.this,"Hiba történt hozzáadáskor",Toast.LENGTH_LONG).show();
+            }
         }
     }
 
@@ -176,7 +185,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void SuggestName(){
         //AutoComplete
-        Cursor cursor_autoc = mDatabaseHelper.getAllRows();
+        Cursor cursor_autoc = mDatabaseHelper.getAllRows_FIX();
         if(cursor_autoc.moveToFirst()){
             do{
                 String name = cursor_autoc.getString(cursor_autoc.getColumnIndex(DatabaseHelper.ALL_KEYS[1]));
@@ -195,7 +204,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void CheckName(){
-        Cursor cursor_autoc = mDatabaseHelper.getAllRows();
+        Cursor cursor_autoc = mDatabaseHelper.getAllRows_FIX();
         String name_sug = editText.getText().toString();
         //Toast.makeText(MainActivity.this,"Itt a hiba",Toast.LENGTH_LONG).show();
             if(cursor_autoc.moveToFirst()){
@@ -212,6 +221,18 @@ public class MainActivity extends AppCompatActivity {
                 }while(cursor_autoc.moveToNext());
             }
 
+    }
+
+    public boolean Exist_in_fix(String name){
+        Cursor cursor = mDatabaseHelper.getAllRows_FIX();
+        if(cursor.moveToFirst()){
+            do{
+                String db_name = cursor.getString(cursor.getColumnIndex(DatabaseHelper.ALL_KEYS[1]));
+                if (name.equals(db_name))
+                    return true;
+            }while (cursor.moveToNext());
+        }
+        return false;
     }
 
 
