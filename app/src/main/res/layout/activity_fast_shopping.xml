@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_fast_shopping"
     android:layout_width="match_parent"
@@ -8,20 +8,56 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.laci.listazas.FastShoppingActivity">
+    tools:context="com.example.laci.listazas.FastShoppingActivity"
+    android:orientation="vertical">
 
     <SurfaceView
         android:id="@+id/SurfaceView"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@+id/tv_text"/>
+        android:layout_height="250dp" />
 
-    <TextView
-        android:id="@+id/tv_text"
+    <LinearLayout
+        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"/>
-</RelativeLayout>
+        android:layout_height="match_parent">
+
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:id="@+id/lv_fastsh" />
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/tv_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_weight="1" />
+
+            <NumberPicker
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/np_fs"
+                android:layout_weight="1"
+                android:descendantFocusability="blocksDescendants"/>
+
+            <Button
+                android:text="Hozzáad"
+                android:layout_width="match_parent"
+                android:id="@+id/btn_fs_add"
+                android:layout_weight="1"
+                android:layout_height="40dp" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

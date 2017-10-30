@@ -60,5 +60,7 @@
     <string name="akci_figyel_f_rum">Akciófigyelő fórum</string>
     <string name="kijelentkez_s">Kijelentkezés</string>
     <string name="gyors_v_s_rl_s">Gyors vásárlás</string>
+    <string name="rengedm_ny">Árengedmény(%)</string>
+    <string name="term_k_neve">Termék neve</string>
 
 </resources>

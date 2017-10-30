@@ -150,6 +150,7 @@ public class ListDataActivity extends AppCompatActivity {
                     editScreenIntent.putExtra("price", price);
 
                     startActivity(editScreenIntent);
+                    ListAllItems();
                 } else {
                     toastMessage("Nincs ilyen nevű termék");
                 }
@@ -177,6 +178,7 @@ public class ListDataActivity extends AppCompatActivity {
     public void onClick(View view) {
         Intent intent = new Intent(ListDataActivity.this, MainActivity.class);
         startActivity(intent);
+        ListAllItems();
     }
 
     private void toastMessage(String message) {
@@ -363,6 +365,10 @@ public class ListDataActivity extends AppCompatActivity {
         }else if(id == R.id.fast_shop){
 
             Intent intent = new Intent(ListDataActivity.this, FastShoppingActivity.class);
+            startActivity(intent);
+        }else if(id == R.id.disc_set){
+
+            Intent intent = new Intent(ListDataActivity.this, Name_discount.class);
             startActivity(intent);
         }
 

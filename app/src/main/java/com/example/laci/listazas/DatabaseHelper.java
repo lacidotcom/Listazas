@@ -25,10 +25,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     private static final String TAG = "DatabaseHelper";
 
-    private static final String DB_NAME = "topkek";
+    private static final String DB_NAME = "topkeka";
 
-    private static final String TABLE_NAME = "elso_adatbazis";
-    private static final String TABLE_NAME_FIX = "fix_database";
+    private static final String TABLE_NAME = "elso_adatbazisa";
+    private static final String TABLE_NAME_FIX = "fix_databasea";
     private static final String COL1 = "_id";
     private static final String COL2 = "name";
     private static final String COL3 = "barcode";
@@ -45,11 +45,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String createTable2 = "CREATE TABLE "+ TABLE_NAME_FIX + "(_id INTEGER PRIMARY KEY AUTOINCREMENT, " + COL2 +
-                " TEXT, " + COL3 + " TEXT, " + COL4 + " REAL, " + COL5 + " INTEGER, " + COL6 + " INTEGER)";
+        String createTable2 = "CREATE TABLE "+ TABLE_NAME + "(_id INTEGER PRIMARY KEY AUTOINCREMENT, " + COL2 +
+                " TEXT, " + COL3 + " TEXT, " + COL4 + " REAL, " + COL5 + " REAL, " + COL6 + " INTEGER)";
         db.execSQL(createTable2);
-        String createTable = "CREATE TABLE "+ TABLE_NAME + "(_id INTEGER PRIMARY KEY AUTOINCREMENT, " + COL2 +
-                " TEXT, " + COL3 + " TEXT, " + COL4 + " REAL, " + COL5 + " INTEGER, " + COL6 + " INTEGER)";
+        String createTable = "CREATE TABLE "+ TABLE_NAME_FIX + "(_id INTEGER PRIMARY KEY AUTOINCREMENT, " + COL2 +
+                " TEXT, " + COL3 + " TEXT, " + COL4 + " REAL, " + COL5 + " REAL, " + COL6 + " INTEGER)";
         db.execSQL(createTable);
 
     }
@@ -141,9 +141,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(query);
     }
 
-    public void deleteName(int id, String name){
+    public void deleteName(int id, String name, String barc, int price, float piece){
         SQLiteDatabase db = this.getWritableDatabase();
-        String query = "DELETE FROM " + TABLE_NAME + " WHERE "+ COL1 + " = '" + id + "'" + " AND " + COL2 + " = '" + name + "'";
+        String query = "DELETE FROM " + TABLE_NAME + " WHERE "+ COL1 + " = '" + id + "'" + " AND " + COL2 + " = '" + name + "'"  +
+                " AND " + COL3 + " = '" + barc + "'"  + " AND " + COL5 + " = " + price;
         Log.d(TAG,"deleteName: query: "+ query);
         Log.d(TAG, "deleteName: deleting "+ name + "from database");
         db.execSQL(query);
@@ -169,6 +170,22 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             c.moveToFirst();
         }
         return c;
+    }
+
+    public Cursor containsName(String name){
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor c = db.query(TABLE_NAME_FIX,null, COL2 + " LIKE '%"+ name +"%'",null,null,null,null);
+        if(c!= null){
+            c.moveToFirst();
+        }
+        return c;
+    }
+
+    public void updateDB_discount(String name, int price){
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "UPDATE " + TABLE_NAME + " SET " + COL5 + " = (" + COL5 + " * " + (price) +
+                ") WHERE " + COL2 + " LIKE '%"+name+"%'";
+        db.execSQL(query);
     }
 
 

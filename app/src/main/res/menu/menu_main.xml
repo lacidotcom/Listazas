@@ -48,4 +48,9 @@
         android:orderInCategory="100"
         android:title="@string/kijelentkez_s"
         app:showAsAction="never" />
+    <item
+        android:id="@+id/disc_set"
+        android:orderInCategory="100"
+        android:title="Termékcsoport akció"
+        app:showAsAction="never" />
 </menu>

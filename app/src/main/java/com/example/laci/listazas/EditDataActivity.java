@@ -81,7 +81,7 @@ public class EditDataActivity extends AppCompatActivity {
         btnDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mDatabaseHelper.deleteName(selectedID,selectedName);
+                mDatabaseHelper.deleteName(selectedID,selectedName,selectedBarcode,selectedPrice,selectedPiece);
                 name.setText("");
                 barcode.setText("");
                 piece.setText("");
