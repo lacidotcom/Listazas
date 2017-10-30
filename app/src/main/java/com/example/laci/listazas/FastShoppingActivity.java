@@ -1,5 +1,6 @@
 package com.example.laci.listazas;
 
+import android.graphics.Color;
 import android.graphics.Rect;
 import android.hardware.Camera;
 import android.support.v7.app.AppCompatActivity;
@@ -11,6 +12,7 @@ import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
@@ -30,7 +32,7 @@ import java.util.ArrayList;
 public class FastShoppingActivity extends AppCompatActivity {
 
     SurfaceView surfaceView;
-    TextView tv_text;
+    TextView tv_text,tv_sum;
     CameraSource cameraSource;
     ListView lv_fastshop;
     NumberPicker numberPicker;
@@ -46,6 +48,7 @@ public class FastShoppingActivity extends AppCompatActivity {
         surfaceView = (SurfaceView)findViewById(R.id.SurfaceView);
 
         tv_text = (TextView)findViewById(R.id.tv_text);
+        tv_sum = (TextView)findViewById(R.id.tv_summary);
         lv_fastshop = (ListView)findViewById(R.id.lv_fastsh);
 
         numberPicker = (NumberPicker)findViewById(R.id.np_fs);
@@ -130,11 +133,29 @@ public class FastShoppingActivity extends AppCompatActivity {
                     //items.add(price);
                     //adapter.notifyDataSetChanged();
                     adapter.add(sum);
+                    sum = 0;
+                    for (int i = 0; i < adapter.getCount(); i++)
+                        sum += adapter.getItem(i);
+                    tv_sum.setText(sum + " Ft");
                 }catch (Exception e){
                     Toast.makeText(FastShoppingActivity.this,e.getMessage(),Toast.LENGTH_SHORT).show();
                 }
             }
         });
+
+        lv_fastshop.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
+                adapter.remove(adapter.getItem(i));
+                adapter.notifyDataSetChanged();
+                int sum = 0;
+                for (int j = 0; j < adapter.getCount(); j++)
+                    sum += adapter.getItem(j);
+                tv_sum.setText(sum + " Ft");
+                return true;
+            }
+        });
+        //adapter.notifyDataSetChanged();
 
         surfaceView.setOnTouchListener(new View.OnTouchListener() {
             @Override
