@@ -25,10 +25,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     private static final String TAG = "DatabaseHelper";
 
-    private static final String DB_NAME = "topkeka";
+    private static final String DB_NAME = "topkekc";
 
-    private static final String TABLE_NAME = "elso_adatbazisa";
-    private static final String TABLE_NAME_FIX = "fix_databasea";
+    private static final String TABLE_NAME = "elso_adatbazisb";
+    private static final String TABLE_NAME_FIX = "fix_databaseb";
     private static final String COL1 = "_id";
     private static final String COL2 = "name";
     private static final String COL3 = "barcode";
@@ -46,10 +46,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         String createTable2 = "CREATE TABLE "+ TABLE_NAME + "(_id INTEGER PRIMARY KEY AUTOINCREMENT, " + COL2 +
-                " TEXT, " + COL3 + " TEXT, " + COL4 + " REAL, " + COL5 + " REAL, " + COL6 + " INTEGER)";
+                " TEXT, " + COL3 + " TEXT, " + COL4 + " REAL, " + COL5 + " INTEGER, " + COL6 + " INTEGER)";
         db.execSQL(createTable2);
         String createTable = "CREATE TABLE "+ TABLE_NAME_FIX + "(_id INTEGER PRIMARY KEY AUTOINCREMENT, " + COL2 +
-                " TEXT, " + COL3 + " TEXT, " + COL4 + " REAL, " + COL5 + " REAL, " + COL6 + " INTEGER)";
+                " TEXT, " + COL3 + " TEXT, " + COL4 + " REAL, " + COL5 + " INTEGER, " + COL6 + " INTEGER)";
         db.execSQL(createTable);
 
     }
@@ -186,9 +186,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public void updateDB_discount(String name, int price){
         SQLiteDatabase db = this.getWritableDatabase();
-        double kek = price/100;
+        double kek = price/100.0;
         String query = "UPDATE " + TABLE_NAME + " SET " + COL5 + " = " + COL5 + " - (" + COL5 + " * " + (kek) +
                 ") WHERE " + COL2 + " LIKE '%"+name+"%'";
+        String query1 = "UPDATE " + TABLE_NAME + " SET price = price - (price * " + Double.toString(kek) + ") WHERE " + COL2 + " LIKE '%"+name+"%'";
         db.execSQL(query);
     }
 
