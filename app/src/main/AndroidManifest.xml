@@ -41,9 +41,10 @@
             android:label="Login"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".PdfViewerActivity"
+            android:name="com.example.laci.listazas.PdfViewerActivity"
             android:label="PDF Viewer"
             android:screenOrientation="portrait" />
+
         <!--
  ATTENTION: This was auto-generated to add Google Play services to your project for
      App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information.

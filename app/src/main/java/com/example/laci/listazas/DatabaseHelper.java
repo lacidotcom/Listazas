@@ -126,9 +126,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return test;
     }
 
-    public Cursor getItemID(String name){
+    public Cursor getItemID(String name, float pp){
         SQLiteDatabase db = this.getWritableDatabase();
-        String query = "SELECT " + COL1 + " FROM " + TABLE_NAME + " WHERE " + COL2 + " = '" + name + "'";
+        String query = "SELECT " + COL1 + " FROM " + TABLE_NAME + " WHERE " + COL2 + " = '" + name + "' AND " + COL4 + " = '" + pp + "'";
         Cursor data = db.rawQuery(query,null);
         return data;
     }
@@ -143,11 +143,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public void deleteName(int id, String name, String barc, int price, float piece){
         SQLiteDatabase db = this.getWritableDatabase();
-        String query = "DELETE FROM " + TABLE_NAME + " WHERE "+ COL1 + " = '" + id + "'" + " AND " + COL2 + " = '" + name + "'"  +
+        String query = "DELETE FROM " + TABLE_NAME + " WHERE "+ COL1 + " = " + id + "" + " AND " + COL2 + " = '" + name + "'"  +
                 " AND " + COL3 + " = '" + barc + "'"  + " AND " + COL5 + " = " + price;
         Log.d(TAG,"deleteName: query: "+ query);
         Log.d(TAG, "deleteName: deleting "+ name + "from database");
         db.execSQL(query);
+
+        String kek = new Integer(id).toString();
+        db.delete(TABLE_NAME, "_id = ?", new String[]{kek});
      }
 
     public void setOrderby(String order){
@@ -183,7 +186,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public void updateDB_discount(String name, int price){
         SQLiteDatabase db = this.getWritableDatabase();
-        String query = "UPDATE " + TABLE_NAME + " SET " + COL5 + " = (" + COL5 + " * " + (price) +
+        double kek = price/100;
+        String query = "UPDATE " + TABLE_NAME + " SET " + COL5 + " = " + COL5 + " - (" + COL5 + " * " + (kek) +
                 ") WHERE " + COL2 + " LIKE '%"+name+"%'";
         db.execSQL(query);
     }

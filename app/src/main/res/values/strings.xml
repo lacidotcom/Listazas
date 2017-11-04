@@ -62,5 +62,6 @@
     <string name="gyors_v_s_rl_s">Gyors vásárlás</string>
     <string name="rengedm_ny">Árengedmény(%)</string>
     <string name="term_k_neve">Termék neve</string>
+    <string name="_0_ft">0 Ft</string>
 
 </resources>

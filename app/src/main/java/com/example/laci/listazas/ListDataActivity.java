@@ -129,8 +129,9 @@ public class ListDataActivity extends AppCompatActivity {
                 view.findFocus();
 
                 String name = ((TextView)view.findViewById(R.id.tv_nev)).getText().toString();
+                float pp = Float.parseFloat(((TextView)view.findViewById(R.id.tv_piece)).getText().toString());
 
-                Cursor data = mDatabasHelper.getItemID(name);
+                Cursor data = mDatabasHelper.getItemID(name,pp);
                 int itemID = -1;
                 String barcode = "";
                 float piece = 0;
@@ -356,8 +357,51 @@ public class ListDataActivity extends AppCompatActivity {
             startActivity(intent);
         }else if(id == R.id.shops){
 
-            Intent intent = new Intent(ListDataActivity.this, PdfViewerActivity.class);
-            startActivity(intent);
+            AlertDialog.Builder mBuilder = new AlertDialog.Builder(ListDataActivity.this);
+            View mView = getLayoutInflater().inflate(R.layout.papers_pdf_dialog,null);
+            Button tesco = (Button)mView.findViewById(R.id.btn_tesco);
+            Button spar = (Button)mView.findViewById(R.id.btn_spar);
+            Button lidl = (Button)mView.findViewById(R.id.btn_LIDL);
+            Button penny = (Button)mView.findViewById(R.id.btn_penny);
+
+            tesco.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(ListDataActivity.this, PdfViewerActivity.class);
+                    intent.putExtra("pdf_name","tesco");
+                    startActivity(intent);
+                }
+            });
+            spar.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(ListDataActivity.this, PdfViewerActivity.class);
+                    intent.putExtra("pdf_name","spar");
+                    startActivity(intent);
+                }
+            });
+            lidl.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(ListDataActivity.this, PdfViewerActivity.class);
+                    intent.putExtra("pdf_name","lidl");
+                    startActivity(intent);
+                }
+            });
+            penny.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(ListDataActivity.this, PdfViewerActivity.class);
+                    intent.putExtra("pdf_name","penny");
+                    startActivity(intent);
+                }
+            });
+
+            mBuilder.setView(mView);
+            final AlertDialog dialog = mBuilder.create();
+            dialog.show();
+
+
         }else if(id == R.id.chat){
 
             Intent intent = new Intent(ListDataActivity.this, ChatActivity.class);
