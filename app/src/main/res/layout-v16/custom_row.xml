@@ -13,9 +13,10 @@
         <TextView
             android:layout_height="wrap_content"
             android:id="@+id/tv_nev"
-            android:textSize="25sp"
+            android:textSize="20sp"
             android:layout_width="match_parent"
-            android:textStyle="normal|bold" />
+            android:textStyle="normal|bold"
+            android:singleLine="true" />
 
         <TextView
             android:layout_width="match_parent"

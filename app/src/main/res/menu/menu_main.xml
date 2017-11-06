@@ -5,7 +5,17 @@
     <item
         android:id="@+id/set_percentage"
         android:orderInCategory="100"
-        android:title="@string/percentage"
+        android:title="Végösszeg manipuláció"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/disc_set"
+        android:orderInCategory="100"
+        android:title="Termékcsoport akció"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/disc_2in1"
+        android:orderInCategory="100"
+        android:title="Egyet fizet többet vihet"
         app:showAsAction="never" />
 
     <item
@@ -20,11 +30,6 @@
         android:title="@string/shops"
         app:showAsAction="never" />
 
-    <item
-        android:id="@+id/whislist"
-        android:orderInCategory="100"
-        android:title="@string/whislist"
-        app:showAsAction="never" />
 
     <item
         android:id="@+id/chat"
@@ -38,6 +43,7 @@
         android:title="@string/gyors_v_s_rl_s"
         app:showAsAction="never" />
 
+
     <item
         android:id="@+id/login"
         android:orderInCategory="100"
@@ -47,10 +53,5 @@
         android:id="@+id/logout"
         android:orderInCategory="100"
         android:title="@string/kijelentkez_s"
-        app:showAsAction="never" />
-    <item
-        android:id="@+id/disc_set"
-        android:orderInCategory="100"
-        android:title="Termékcsoport akció"
         app:showAsAction="never" />
 </menu>

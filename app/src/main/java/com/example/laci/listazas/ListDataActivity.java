@@ -414,6 +414,10 @@ public class ListDataActivity extends AppCompatActivity {
 
             Intent intent = new Intent(ListDataActivity.this, Name_discount.class);
             startActivity(intent);
+        }else if(id == R.id.disc_2in1){
+
+            Intent intent = new Intent(ListDataActivity.this, DiscountAddActivity.class);
+            startActivity(intent);
         }
 
         return super.onOptionsItemSelected(item);

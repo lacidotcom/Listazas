@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Color;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.util.AsyncListUtil;
@@ -20,6 +21,7 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.zxing.integration.android.IntentIntegrator;
@@ -29,16 +31,16 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static final String TAG = "MainActivity";
+    protected static final String TAG = "MainActivity";
 
     DatabaseHelper mDatabaseHelper;
-    private Button btnAdd, btnViewData, btn_barcode_scan;
-    private EditText eT_barcode, eT_piece,eT_price;
-    private AutoCompleteTextView editText;
+    protected Button btnAdd, btnViewData, btn_barcode_scan;
+    protected EditText eT_barcode, eT_piece,eT_price;
+    protected AutoCompleteTextView editText;
 
 
-    private Toolbar myToolbar;
-    private ArrayList<String> ItemNames = new ArrayList<String>();
+    protected Toolbar myToolbar;
+    protected ArrayList<String> ItemNames = new ArrayList<String>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -147,16 +149,16 @@ public class MainActivity extends AppCompatActivity {
     public void AddData(String newEntry, String entry_vonalK, float entry_darab, float entry_darab_ar){
         boolean insertData = mDatabaseHelper.addData(newEntry,entry_vonalK,entry_darab,entry_darab_ar);
         if(insertData){
-            Toast.makeText(MainActivity.this,"Sikeresen hozzaadva",Toast.LENGTH_LONG).show();
+            Toast.makeText(this,"Sikeresen hozzaadva",Toast.LENGTH_LONG).show();
         }else{
-            Toast.makeText(MainActivity.this,"Hiba történt hozzáadáskor",Toast.LENGTH_LONG).show();
+            Toast.makeText(this,"Hiba történt hozzáadáskor",Toast.LENGTH_LONG).show();
         }
         if(!Exist_in_fix(newEntry)) {
             insertData = mDatabaseHelper.addData_FIX(newEntry, entry_vonalK, entry_darab, entry_darab_ar);
             if(insertData){
-                Toast.makeText(MainActivity.this,"Sikeresen hozzáadva",Toast.LENGTH_LONG).show();
+                Toast.makeText(this,"Sikeresen hozzáadva",Toast.LENGTH_LONG).show();
             }else{
-                Toast.makeText(MainActivity.this,"Hiba történt hozzáadáskor",Toast.LENGTH_LONG).show();
+                Toast.makeText(this,"Hiba történt hozzáadáskor",Toast.LENGTH_LONG).show();
             }
         }
     }
@@ -169,15 +171,67 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
+    public boolean onOptionsItemSelected(final MenuItem item) {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.shops) {
+        if (id == R.id.set_percentage) {
+            AlertDialog.Builder mBuilder = new AlertDialog.Builder(MainActivity.this);
+            View mView = getLayoutInflater().inflate(R.layout.percentage_dialog,null);
+            final EditText percent = (EditText) mView.findViewById(R.id.eT_percent);
+            final EditText summa = (EditText) mView.findViewById(R.id.eT_summa);
+            Button OK = (Button) mView.findViewById(R.id.btn_OK);
+            final TextView discount = (TextView) mView.findViewById(R.id.tv_show_kedvez);
+
+
+
+            OK.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if(percent.getText().toString().isEmpty() && summa.getText().toString().isEmpty() ){
+                        Toast.makeText(MainActivity.this,"Kötelező a kitöltés",Toast.LENGTH_SHORT).show();
+                    }else if (!percent.getText().toString().isEmpty() && !summa.getText().toString().isEmpty()){
+                        double temp = mDatabaseHelper.getOsszar();
+                        temp = temp - Integer.parseInt(String.valueOf(summa.getText()));
+                        temp = temp - (temp * (Double.parseDouble(String.valueOf(percent.getText()))/100));
+                        String temp_str = String.valueOf((int)temp) + " Ft";
+                        discount.setText(temp_str);
+                        //toastMessage("Sikeres megadás");
+                    }else if (percent.getText().toString().isEmpty() && !summa.getText().toString().isEmpty()){
+                        double temp = mDatabaseHelper.getOsszar();
+                        temp = temp - Integer.parseInt(String.valueOf(summa.getText()));
+                        //temp = temp * (Double.parseDouble(String.valueOf(percent.getText()))/100);
+                        String temp_str = String.valueOf((int)temp) + " Ft";
+                        discount.setText(temp_str);
+                        //toastMessage("Sikeres megadás");
+                    }else if (!percent.getText().toString().isEmpty() && summa.getText().toString().isEmpty()){
+                        double temp = mDatabaseHelper.getOsszar();
+                        //temp = temp - Integer.parseInt(String.valueOf(summa.getText()));
+                        temp = temp - (temp * (Double.parseDouble(String.valueOf(percent.getText()))/100));
+                        String temp_str = String.valueOf((int) temp) + " Ft";
+                        discount.setText(temp_str);
+                        //toastMessage("Sikeres megadás");
+                    }
+                }
+            });
+            mBuilder.setView(mView);
+            final AlertDialog dialog = mBuilder.create();
+            dialog.show();
+
             return true;
+        }
+
+        else if(id == R.id.disc_set){
+
+            Intent intent = new Intent(MainActivity.this, Name_discount.class);
+            startActivity(intent);
+        }else if(id == R.id.disc_2in1){
+
+            Intent intent = new Intent(MainActivity.this, DiscountAddActivity.class);
+            startActivity(intent);
         }
 
         return super.onOptionsItemSelected(item);
@@ -198,7 +252,7 @@ public class MainActivity extends AppCompatActivity {
             editText.setThreshold(1);
             editText.setAdapter(adapter);
         }else{
-            Toast.makeText(MainActivity.this,"Hiba ItemNames",Toast.LENGTH_LONG).show();
+            Toast.makeText(this,"Hiba ItemNames",Toast.LENGTH_LONG).show();
         }
         //CheckName();
     }
