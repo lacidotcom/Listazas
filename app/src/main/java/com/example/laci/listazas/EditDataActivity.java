@@ -2,9 +2,11 @@ package com.example.laci.listazas;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.renderscript.Sampler;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -20,8 +22,8 @@ public class EditDataActivity extends AppCompatActivity {
 
     private static final String TAG = "EditDataActivity";
 
-    private Button btnSave,btnDelete;
-    private EditText name, barcode, piece, price;
+    private Button btnSave,btnDelete,btn_OK;
+    private EditText name, barcode, piece, price,discount;
 
     DatabaseHelper mDatabaseHelper;
 
@@ -41,6 +43,8 @@ public class EditDataActivity extends AppCompatActivity {
 
         btnSave = (Button) findViewById(R.id.btnSave);
         btnDelete = (Button) findViewById(R.id.btnDelete);
+        btn_OK = (Button)findViewById(R.id.btn_OK);
+        discount = (EditText) findViewById(R.id.eT_disc_edit);
         name = (EditText) findViewById(R.id.edit_eT_name);
         barcode = (EditText) findViewById(R.id.edit_eT_barcode);
         piece = (EditText) findViewById(R.id.edit_eT_piece);
@@ -89,6 +93,22 @@ public class EditDataActivity extends AppCompatActivity {
                 toastMessage("Törölve a listából");
                 Intent intent = new Intent(EditDataActivity.this, ListDataActivity.class);
                 startActivity(intent);
+            }
+        });
+
+        btn_OK.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                try{
+                    double disc = Double.parseDouble(discount.getText().toString());
+                    disc = disc/100.0;
+                    double price_double = Double.parseDouble(price.getText().toString());
+                    double temp = (price_double-(price_double * disc));
+                    price.setText( String.valueOf((int)temp));
+                }catch (Exception e){
+                    Log.d(String.valueOf(EditDataActivity.this),e.toString());
+                    toastMessage("Pozitív számot adj meg!");
+                }
             }
         });
     }

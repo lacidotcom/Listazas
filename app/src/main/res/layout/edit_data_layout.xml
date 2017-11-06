@@ -18,18 +18,6 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/t_rl_s"
-        android:id="@+id/btnDelete"
-        android:layout_marginBottom="23dp"
-        android:layout_marginRight="47dp"
-        android:layout_marginEnd="47dp"
-        android:layout_alignParentBottom="true"
-        android:layout_toLeftOf="@+id/btnSave"
-        android:layout_toStartOf="@+id/btnSave" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:text="@string/ment_s"
         android:id="@+id/btnSave"
         android:layout_marginRight="36dp"
@@ -95,16 +83,6 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
 
-    <TextView
-        android:text="@string/egys_g_r_edit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/edit_tv_price"
-        android:textSize="20sp"
-        android:layout_alignBottom="@+id/edit_eT_price"
-        android:layout_alignLeft="@+id/edit_tv_piece"
-        android:layout_alignStart="@+id/edit_tv_piece" />
-
     <EditText
         android:layout_width="200dp"
         android:layout_height="50dp"
@@ -124,5 +102,61 @@
         android:layout_below="@+id/edit_eT_piece"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:text="@string/egys_g_r_edit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/edit_tv_price"
+        android:textSize="20sp"
+        android:layout_alignBottom="@+id/edit_eT_price"
+        android:layout_alignLeft="@+id/edit_tv_piece"
+        android:layout_alignStart="@+id/edit_tv_piece" />
+
+    <TextView
+        android:text="Árengedmény (%)"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_discount"
+        android:textSize="20sp"
+        android:layout_alignBaseline="@+id/eT_disc_edit"
+        android:layout_alignBottom="@+id/eT_disc_edit"
+        android:layout_alignLeft="@+id/edit_tv_price"
+        android:layout_alignStart="@+id/edit_tv_price" />
+
+    <EditText
+        android:layout_height="wrap_content"
+        android:inputType="numberDecimal"
+        android:ems="10"
+        android:id="@+id/eT_disc_edit"
+        android:layout_alignTop="@+id/btn_OK"
+        android:layout_toRightOf="@+id/tv_discount"
+        android:layout_toEndOf="@+id/tv_discount"
+        android:layout_marginLeft="24dp"
+        android:layout_marginStart="24dp"
+        android:layout_width="60dp"
+        android:singleLine="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/t_rl_s"
+        android:id="@+id/btnDelete"
+        android:layout_marginBottom="23dp"
+        android:layout_alignParentBottom="true"
+        android:layout_toLeftOf="@+id/eT_disc_edit"
+        android:layout_toStartOf="@+id/eT_disc_edit" />
+
+    <Button
+        android:text="%"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn_OK"
+        android:layout_marginRight="18dp"
+        android:layout_marginEnd="18dp"
+        android:layout_width="60dp"
+        android:layout_below="@+id/edit_eT_price"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="84dp" />
 
 </RelativeLayout>

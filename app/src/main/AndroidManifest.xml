@@ -4,7 +4,7 @@
 
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -41,7 +41,7 @@
             android:label="Login"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.example.laci.listazas.PdfViewerActivity"
+            android:name=".PdfViewerActivity"
             android:label="PDF Viewer"
             android:screenOrientation="portrait" />
 
@@ -61,7 +61,8 @@
             android:name=".FastShoppingActivity"
             android:configChanges="keyboardHidden"
             android:screenOrientation="portrait" />
-        <activity android:name=".Name_discount"></activity>
+        <activity android:name=".Name_discount" />
+        <activity android:name=".DiscountAddActivity"></activity>
     </application>
 
 </manifest>
