@@ -153,6 +153,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.delete(TABLE_NAME, "_id = ?", new String[]{kek});
      }
 
+    public void deleteName_forError(String name, String barc, float piece){
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "DELETE FROM " + TABLE_NAME + " WHERE "+ COL2 + " = '" + name + "'"  +
+                " AND " + COL3 + " = '" + barc + "'";
+        Log.d(TAG,"deleteName: query: "+ query);
+        Log.d(TAG, "deleteName: deleting "+ name + "from database");
+        db.execSQL(query);
+    }
+
     public void setOrderby(String order){
         orderby = order;
     }

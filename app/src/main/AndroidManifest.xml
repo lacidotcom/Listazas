@@ -61,8 +61,12 @@
             android:name=".FastShoppingActivity"
             android:configChanges="keyboardHidden"
             android:screenOrientation="portrait" />
-        <activity android:name=".Name_discount" />
-        <activity android:name=".DiscountAddActivity"></activity>
+        <activity android:name=".Name_discount"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".DiscountAddActivity"
+            android:screenOrientation="portrait"
+            android:label="Akció hozzáadás">
+        </activity>
     </application>
 
 </manifest>

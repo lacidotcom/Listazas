@@ -130,6 +130,7 @@ public class ListDataActivity extends AppCompatActivity {
 
                 String name = ((TextView)view.findViewById(R.id.tv_nev)).getText().toString();
                 float pp = Float.parseFloat(((TextView)view.findViewById(R.id.tv_piece)).getText().toString());
+                String bc = ((TextView)view.findViewById(R.id.tv_barcode)).getText().toString();
 
                 Cursor data = mDatabasHelper.getItemID(name,pp);
                 int itemID = -1;
@@ -153,7 +154,8 @@ public class ListDataActivity extends AppCompatActivity {
                     startActivity(editScreenIntent);
                     ListAllItems();
                 } else {
-                    toastMessage("Nincs ilyen nevű termék");
+                    toastMessage("Nincs ilyen nevű termék az adatbázisban, törlésre került.");
+                    mDatabasHelper.deleteName_forError(name,bc,pp);
                 }
             }
         });

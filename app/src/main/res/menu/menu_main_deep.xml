@@ -1,0 +1,41 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.laci.listazas.MainActivity">
+    <item
+        android:id="@+id/set_percentage"
+        android:orderInCategory="100"
+        android:title="Végösszeg manipuláció"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/disc_set"
+        android:orderInCategory="100"
+        android:title="Termékcsoport akció"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/disc_2in1"
+        android:orderInCategory="100"
+        android:title="Egyet fizet többet vihet"
+        app:showAsAction="never" />
+
+
+    <item
+        android:id="@+id/shops"
+        android:orderInCategory="100"
+        android:title="@string/shops"
+        app:showAsAction="never" />
+
+
+    <item
+        android:id="@+id/chat"
+        android:orderInCategory="100"
+        android:title="@string/akci_figyel_f_rum"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/fast_shop"
+        android:orderInCategory="100"
+        android:title="@string/gyors_v_s_rl_s"
+        app:showAsAction="never" />
+
+</menu>

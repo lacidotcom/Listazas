@@ -134,8 +134,8 @@
         android:layout_toEndOf="@+id/tv_discount"
         android:layout_marginLeft="24dp"
         android:layout_marginStart="24dp"
-        android:layout_width="60dp"
-        android:singleLine="true" />
+        android:singleLine="true"
+        android:layout_width="40dp" />
 
     <Button
         android:layout_width="wrap_content"
@@ -151,12 +151,10 @@
         android:text="%"
         android:layout_height="wrap_content"
         android:id="@+id/btn_OK"
-        android:layout_marginRight="18dp"
-        android:layout_marginEnd="18dp"
         android:layout_width="60dp"
+        android:layout_marginTop="84dp"
         android:layout_below="@+id/edit_eT_price"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="84dp" />
+        android:layout_alignParentEnd="true" />
 
 </RelativeLayout>

@@ -166,7 +166,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
+        getMenuInflater().inflate(R.menu.menu_main_deep, menu);
         return true;
     }
 
@@ -231,6 +231,61 @@ public class MainActivity extends AppCompatActivity {
         }else if(id == R.id.disc_2in1){
 
             Intent intent = new Intent(MainActivity.this, DiscountAddActivity.class);
+            startActivity(intent);
+        }else if(id == R.id.shops){
+
+            AlertDialog.Builder mBuilder = new AlertDialog.Builder(MainActivity.this);
+            View mView = getLayoutInflater().inflate(R.layout.papers_pdf_dialog,null);
+            Button tesco = (Button)mView.findViewById(R.id.btn_tesco);
+            Button spar = (Button)mView.findViewById(R.id.btn_spar);
+            Button lidl = (Button)mView.findViewById(R.id.btn_LIDL);
+            Button penny = (Button)mView.findViewById(R.id.btn_penny);
+
+            tesco.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(MainActivity.this, PdfViewerActivity.class);
+                    intent.putExtra("pdf_name","tesco");
+                    startActivity(intent);
+                }
+            });
+            spar.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(MainActivity.this, PdfViewerActivity.class);
+                    intent.putExtra("pdf_name","spar");
+                    startActivity(intent);
+                }
+            });
+            lidl.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(MainActivity.this, PdfViewerActivity.class);
+                    intent.putExtra("pdf_name","lidl");
+                    startActivity(intent);
+                }
+            });
+            penny.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(MainActivity.this, PdfViewerActivity.class);
+                    intent.putExtra("pdf_name","penny");
+                    startActivity(intent);
+                }
+            });
+
+            mBuilder.setView(mView);
+            final AlertDialog dialog = mBuilder.create();
+            dialog.show();
+
+
+        }else if(id == R.id.chat){
+
+            Intent intent = new Intent(MainActivity.this, ChatActivity.class);
+            startActivity(intent);
+        }else if(id == R.id.fast_shop){
+
+            Intent intent = new Intent(MainActivity.this, FastShoppingActivity.class);
             startActivity(intent);
         }
 
