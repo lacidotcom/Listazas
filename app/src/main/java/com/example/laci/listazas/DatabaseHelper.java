@@ -107,7 +107,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public void allprice(){
         SQLiteDatabase db = this.getWritableDatabase();
-        String query = "UPDATE " + TABLE_NAME + " SET " + COL6 + " = "+ COL4+" * "+ COL5;
+        String query = "UPDATE " + TABLE_NAME + " SET " + COL6 + " = CAST("+ COL4+" * "+ COL5 + " AS INTEGER)";
         db.execSQL(query);
     }
 
