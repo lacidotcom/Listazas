@@ -29,7 +29,8 @@
             android:textSize="20sp"
             android:layout_weight="0.34"
             android:textStyle="normal|bold"
-            android:textAlignment="center" />
+            android:textAlignment="center"
+            android:textColor="?attr/colorAccent" />
 
         <TextView
             android:text="Ár (Ft)"
@@ -39,7 +40,8 @@
             android:layout_weight="0.13"
             android:textSize="20sp"
             android:textStyle="normal|bold"
-            android:textAlignment="textStart" />
+            android:textAlignment="textStart"
+            android:textColor="?attr/colorAccent" />
     </LinearLayout>
 
     <ListView

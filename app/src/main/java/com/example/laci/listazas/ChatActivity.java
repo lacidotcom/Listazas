@@ -82,8 +82,9 @@ public class ChatActivity extends AppCompatActivity {
 
         if(FirebaseAuth.getInstance().getCurrentUser() == null){
             startActivityForResult(AuthUI.getInstance().createSignInIntentBuilder().build(),SIGN_IN_REQUEST_CODE);
+
         }else{
-            Snackbar.make(activity_chat,"Hali" + FirebaseAuth.getInstance().getCurrentUser().getEmail(),Snackbar.LENGTH_SHORT).show();
+            Snackbar.make(activity_chat,"Üdv, " + FirebaseAuth.getInstance().getCurrentUser().getEmail(),Snackbar.LENGTH_SHORT).show();
         }
 
         displayChatMessage();

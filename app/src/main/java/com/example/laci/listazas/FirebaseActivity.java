@@ -103,10 +103,12 @@ public class FirebaseActivity extends AppCompatActivity implements View.OnClickL
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()){
-                    toastMessage("sikeres regisztáció");
+                    toastMessage("Sikeres regisztáció");
                     progressDialog.dismiss();
+                    Intent intent = new Intent(FirebaseActivity.this, ListDataActivity.class);
+                    startActivity(intent);
                 }else{
-                    toastMessage("sikertelen regisztráció");
+                    toastMessage("Sikertelen regisztráció, min 6 karakteres jelszó!");
                     progressDialog.dismiss();
                 }
             }

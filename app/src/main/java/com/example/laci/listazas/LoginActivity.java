@@ -121,7 +121,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "signInWithCredential:success");
                             FirebaseUser user = mAuth.getCurrentUser();
-                            toastMessage("Már be van jelentkezve");
+                            toastMessage("Be van jelentkezve");
+                            Intent intent = new Intent(LoginActivity.this, ListDataActivity.class);
+                            startActivity(intent);
                             //itt kell UI-t hívni
                         } else {
                             // If sign in fails, display a message to the user.
@@ -162,6 +164,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 if(task.isSuccessful()){
                     //start profile activity
                     toastMessage("sikeres belépés");
+                    Intent intent = new Intent(LoginActivity.this, ListDataActivity.class);
+                    startActivity(intent);
                 }else{
                     toastMessage("sikertelen belépés");
                 }

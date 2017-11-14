@@ -11,6 +11,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.annotation.NonNull;
+import android.support.design.widget.Snackbar;
 import android.support.multidex.MultiDex;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AlertDialog;
@@ -33,6 +34,7 @@ import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.firebase.ui.auth.AuthUI;
 import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.appindexing.Thing;
@@ -58,6 +60,7 @@ public class ListDataActivity extends AppCompatActivity {
     private ListView mListView;
     private SimpleCursorAdapter dataAdapter;
     private Button btn_add;
+    private TextView header;
 
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
@@ -79,6 +82,7 @@ public class ListDataActivity extends AppCompatActivity {
         mListView = (ListView) findViewById(R.id.listView);
         mDatabasHelper = new DatabaseHelper(this);
         btn_add = (Button) findViewById(R.id.btn_hozzaad);
+        header = (TextView) findViewById(R.id.tv_heading_name);
 
         ListAllItems();
         // ATTENTION: This was auto-generated to implement the App Indexing API.
@@ -118,6 +122,8 @@ public class ListDataActivity extends AppCompatActivity {
                 R.id.tv_piece,
                 R.id.tv_ar
         };
+
+        header.setText("Terméknév ("+ cursor.getCount() + ")");
 
 
         dataAdapter = new SimpleCursorAdapter(this, R.layout.custom_row, cursor, columns, to, 0);
@@ -420,6 +426,16 @@ public class ListDataActivity extends AppCompatActivity {
 
             Intent intent = new Intent(ListDataActivity.this, DiscountAddActivity.class);
             startActivity(intent);
+        }else if(id == R.id.logout){
+            AuthUI.getInstance().signOut(this).addOnCompleteListener(new OnCompleteListener<Void>() {
+                @Override
+                public void onComplete(@NonNull Task<Void> task) {
+                    Toast.makeText(ListDataActivity.this,"Kijelentkezett.",Toast.LENGTH_SHORT).show();
+
+                }
+            });
+
+
         }
 
         return super.onOptionsItemSelected(item);
