@@ -13,7 +13,9 @@ public class ChatMessage {
 
     public ChatMessage(String messageText, String messageUser) {
         this.messageText = messageText;
-        this.messageUser = messageUser;
+
+        String[] temp = messageUser.split("@");
+        this.messageUser = temp[0];
 
         messageTime = new Date().getTime();
     }

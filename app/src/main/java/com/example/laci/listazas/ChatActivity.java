@@ -102,7 +102,7 @@ public class ChatActivity extends AppCompatActivity {
 
                 messageText.setText(model.getMessageText());
                 messageUSer.setText(model.getMessageUser());
-                messageTime.setText(DateFormat.format("dd-MM-yyyy (HH:ss:mm)",model.getMessageTime()));
+                messageTime.setText(DateFormat.format("yyyy-MM-dd",model.getMessageTime()));
             }
         };
         lisOfMessage.setAdapter(adapter);

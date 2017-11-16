@@ -62,7 +62,7 @@
         android:layout_alignStart="@+id/edit_tv_name" />
 
     <TextView
-        android:text="@string/darab_edit"
+        android:text="@string/egys_g"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/edit_tv_piece"
@@ -114,7 +114,7 @@
         android:layout_alignStart="@+id/edit_tv_piece" />
 
     <TextView
-        android:text="Árengedmény (%)"
+        android:text="@string/rengedm_ny_perc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/tv_discount"
@@ -148,7 +148,7 @@
         android:layout_toStartOf="@+id/eT_disc_edit" />
 
     <Button
-        android:text="%"
+        android:text="@string/precent"
         android:layout_height="wrap_content"
         android:id="@+id/btn_OK"
         android:layout_width="60dp"

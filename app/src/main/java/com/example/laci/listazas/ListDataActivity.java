@@ -46,6 +46,9 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import java.text.NumberFormat;
+import java.util.Locale;
+
 
 /**
  * Created by Laci on 2017. 03. 29..
@@ -111,7 +114,8 @@ public class ListDataActivity extends AppCompatActivity {
 
         TextView Osszeg = (TextView) findViewById(R.id.tv_all_price);
         int Osszeg_from_db = mDatabasHelper.getOsszar();
-        Osszeg.setText("Összeg:                     " + Osszeg_from_db + " Ft");
+        //NumberFormat.getNumberInstance(Locale.US).format(Osszeg_from_db);
+        Osszeg.setText("Összeg:                  " + NumberFormat.getNumberInstance(Locale.US).format(Osszeg_from_db) + " Ft");
         mDatabasHelper.allprice();
 
         Cursor cursor = mDatabasHelper.getAllRows();
@@ -385,6 +389,7 @@ public class ListDataActivity extends AppCompatActivity {
                 public void onClick(View view) {
                     Intent intent = new Intent(ListDataActivity.this, PdfViewerActivity.class);
                     intent.putExtra("pdf_name","spar");
+
                     startActivity(intent);
                 }
             });

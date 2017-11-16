@@ -35,65 +35,7 @@ public class PdfViewerActivity extends AppCompatActivity {
 
     private StorageReference mStorageRef;
 
-    /*
-
-    private StorageReference mStorageRef;
-    PDFView pdfView;
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_pdf_viewer);
-
-        /*
-        mStorageRef = FirebaseStorage.getInstance().getReferenceFromUrl("gs://bolti-koltes.appspot.com").child("/akciok/tesco.pdf");
-
-
-        mStorageRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener() {
-            @Override
-            public void onSuccess(Object o) {
-                Log.i("Main", "File uri: " + o.toString());
-                new RetrivePDFStream().execute(o.toString());
-            }
-        });
-*/
-    /*
-
-        pdfView = (PDFView) findViewById(R.id.pdfView);
-
-        new RetrivePDFStream().execute("https://firebasestorage.googleapis.com/v0/b/bolti-koltes.appspot.com/o/akciok%2Ftesco.pdf?alt=media&token=72b39d69-9e0b-4b6b-bdff-77e35be048d2");
-
-    }
-
-    class RetrivePDFStream extends AsyncTask<String,Void,InputStream>{
-
-        @Override
-        protected InputStream doInBackground(String... strings) {
-            InputStream inputStream = null;
-            try{
-                URL url = new URL(strings[0]);
-                HttpURLConnection urlConnection = (HttpURLConnection)url.openConnection();
-                if(urlConnection.getResponseCode() == 200){
-                    inputStream = new BufferedInputStream(urlConnection.getInputStream());
-                }
-            }catch (IOException e){
-                return null;
-            }
-            return inputStream;
-        }
-
-        @Override
-        protected void onPostExecute(InputStream inputStream) {
-            pdfView.fromStream(inputStream).load();
-        }
-    }
-
-*/
-
-
     private PDFView pdfView;
-
-    private static int PICKFILE_RESULT_CODE = 101;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -114,10 +56,8 @@ public class PdfViewerActivity extends AppCompatActivity {
             @Override
             public void onSuccess(Object o) {
                 Log.i("Main", "File uri: " + o.toString());
-                //new RetrivePDFStream().execute(o.toString());
-                //File file = new File("file:///storage/sdcard0/Download/"+ pdf_name + ".pdf");
-                //if(!file.exists())
-                    download(o.toString(),pdf_name);
+                Toast.makeText(PdfViewerActivity.this, "Kérem várjon a fájl letöltésére!", Toast.LENGTH_SHORT).show();
+                download(o.toString(),pdf_name);
             }
         });
 
@@ -131,7 +71,7 @@ public class PdfViewerActivity extends AppCompatActivity {
             } catch (Exception e) {
                 finished = true;
             }
-        }while (finished);
+        }while (!finished);
 
         readButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -140,13 +80,23 @@ public class PdfViewerActivity extends AppCompatActivity {
                 loadPdf(Uri.parse("file:///storage/sdcard0/Download/"+ pdf_name + ".pdf"));
             }
         });
-        //loadPdf(Uri.parse("file:///storage/sdcard0/Download/"+ pdf_name + ".pdf"));
     }
 
     private void loadPdf(Uri uri){
         pdfView.fromUri(uri).load();
     }
 
+    @Override
+    protected void onPause() {
+        finish();
+        super.onPause();
+    }
+
+    @Override
+    protected void onStop() {
+        finish();
+        super.onStop();
+    }
 
     public void download(String pdf_url, String pdf_name)
     {
@@ -167,7 +117,6 @@ public class PdfViewerActivity extends AppCompatActivity {
             File folder = new File(extStorageDirectory, "Download");
             folder.mkdir();
 
-
             File pdfFile = new File(folder, fileName);
 
             try{
@@ -182,6 +131,7 @@ public class PdfViewerActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(Void aVoid) {
             Toast.makeText(PdfViewerActivity.this, pdf_name + " letöltése kész", Toast.LENGTH_SHORT).show();
+
         }
 
     }
