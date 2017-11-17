@@ -66,5 +66,6 @@
     <string name="egys_g">Egység</string>
     <string name="precent">%</string>
     <string name="rengedm_ny_perc">Árengedmény (%)</string>
+    <string name="visszal_p_s">Visszalépés</string>
 
 </resources>

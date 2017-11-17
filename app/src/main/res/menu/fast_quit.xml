@@ -1,0 +1,12 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.laci.listazas.MainActivity">
+    <item
+        android:id="@+id/back_to_list"
+        android:orderInCategory="100"
+        android:title="@string/visszal_p_s"
+        app:showAsAction="never" />
+
+
+</menu>

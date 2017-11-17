@@ -1,5 +1,6 @@
 package com.example.laci.listazas;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Rect;
 import android.hardware.Camera;
@@ -8,6 +9,8 @@ import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.util.Log;
 import android.util.SparseArray;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -112,7 +115,8 @@ public class FastShoppingActivity extends AppCompatActivity {
                             }
                             String kek = stringBuilder.toString();
                             //Toast.makeText(FastShoppingActivity.this,kek,Toast.LENGTH_SHORT).show();
-                            kek = kek.replaceAll("/[^0-9]/g","").replace("\n", "").replace("\r", "").replace(".", "").replace("-", "");
+                            kek = kek.replace("\n", "").replace("\r", "").replace(".", "").replace("-", "");
+                            kek = kek.replaceAll("[^\\d.]","");
                             tv_text.setText(kek);
                             //tv_text.setText(stringBuilder.toString());
                         }
@@ -165,6 +169,23 @@ public class FastShoppingActivity extends AppCompatActivity {
             }
         });
 
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.fast_quit, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        int id = item.getItemId();
+        if(id == R.id.back_to_list){
+            Intent intent = new Intent(FastShoppingActivity.this, ListDataActivity.class);
+            startActivity(intent);
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override

@@ -56,7 +56,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         mAuth = FirebaseAuth.getInstance();
 
         if(mAuth.getCurrentUser() != null){
-            //profile activity
+            toastMessage("Be van jelentkezve, mint " + mAuth.getCurrentUser().getEmail());
+            Intent intent = new Intent(LoginActivity.this, ListDataActivity.class);
+            startActivity(intent);
         }
 
         progressDialog = new ProgressDialog(this);
@@ -179,7 +181,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             userLogin();
         }
         if(view == textViewSignup){
-            finish();
+
             startActivity(new Intent(LoginActivity.this, FirebaseActivity.class));
         }
     }
